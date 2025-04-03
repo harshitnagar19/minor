@@ -70,8 +70,13 @@ const NavBar = () => {
       {/* Mobile menu, show/hide based on menu state */}
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-          <Link to="#features" className="text-gray-600 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">HeroSection</Link>
-          <Link to="#about-us" className="text-gray-600 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">About Us</Link>
+          <Link to="/" className="">HeroSection</Link>
+          <NavLink to="/" className={({ isActive }) => `hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
+              >HeroSection
+          </NavLink>
+          <NavLink to="/about-us" className={({ isActive }) => `hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
+              >About Us
+          </NavLink>
           <Link to="#contact" className="text-gray-600 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Contact Us</Link>
           <Link to="#pricing" className="text-gray-600 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Kuch dena hoto</Link>
           <div className="mt-4">
