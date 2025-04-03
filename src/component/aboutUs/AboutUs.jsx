@@ -90,7 +90,6 @@ const AboutUs = () => {
             />
 
             {/* Navigation Bar */}
-            {/* <NavBar/> */}
             
             {/* Content Container with higher z-index */}
             <div className="container mx-auto px-6 pb-12 pt-20 relative z-10">
