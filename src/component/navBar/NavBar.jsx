@@ -2,12 +2,29 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from "../../assets/Logo.png";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  const location = useLocation();
+  const navigate = useNavigate();
+  // Scrolling to top when logo is clicked
+  const handleHeroClick = () => {
+    if (location.pathname === '/') {
+      // Already on home page - scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // On different page - navigate to home
+      navigate('/');
+      // Optional: Scroll to top after navigation completes
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1000);
+    }
   };
 
   const menuVariants = {
@@ -39,21 +56,33 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center border border-gray-700/50">
-            <Link to="/">
-              <img src={logo} alt="Logo" className="h-10 sm:h-12 rounded-sm" />
-            </Link>
+          <button onClick={handleHeroClick}>
+          <img src={logo} alt="Logo" className="h-10 sm:h-12 rounded-sm" />
+        </button>
           </div>
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               <NavLink
                 to="/"
+                onClick={(e) => {
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
                 className={({ isActive }) => `hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-[#4f39f6]" : "text-white"}`}
               >
                 HeroSection
               </NavLink>
               <NavLink
                 to="/about-us"
+                onClick={(e)=>{
+                  if(location.pathname==='/about-us'){
+                  e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
                 className={({ isActive }) => `hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-[#4f39f6]" : "text-white"}`}
               >
                 About US
