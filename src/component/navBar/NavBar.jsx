@@ -56,9 +56,9 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center border border-gray-700/50">
-          <button onClick={handleHeroClick}>
-          <img src={logo} alt="Logo" className="h-10 sm:h-12 rounded-sm" />
-        </button>
+            <button onClick={handleHeroClick}>
+              <img src={logo} alt="Logo" className="h-10 sm:h-12 rounded-sm" />
+            </button>
           </div>
 
           <div className="hidden md:block">
@@ -77,9 +77,9 @@ const NavBar = () => {
               </NavLink>
               <NavLink
                 to="/about-us"
-                onClick={(e)=>{
-                  if(location.pathname==='/about-us'){
-                  e.preventDefault();
+                onClick={(e) => {
+                  if (location.pathname === '/about-us') {
+                    e.preventDefault();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }
                 }}
@@ -87,8 +87,15 @@ const NavBar = () => {
               >
                 About US
               </NavLink>
-            <NavLink to="/contact-us" className={({isActive})=>`hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-[#4f39f6]" : "text-white"}`} > Contact Us</NavLink>
-              <Link to="#pricing" className="text-white hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Kuch dena hoto</Link>
+              <NavLink to="/contact-us"
+                onClick={(e) => {
+                  if (location.pathname === '/contact-us') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
+                className={({ isActive }) => `hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-[#4f39f6]" : "text-white"}`} > Contact Us</NavLink>
+              <Link to="#pricing" className="text-white hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Other</Link>
             </div>
           </div>
 
