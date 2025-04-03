@@ -97,7 +97,7 @@ const AboutUs = () => {
                 <div className="text-center mb-16" data-aos="fade-down">
                     <h1 className="text-5xl font-bold mb-4">About <span className="text-indigo-400 animate-pulse">MergX</span></h1>
                     <p
-                        className="text-2xl leading-12 tracking-widest text-gray-300 max-w-6xl mx-auto typewriter"
+                        className="hidden md:block text-2xl leading-12 tracking-widest text-gray-300 max-w-6xl mx-auto typewriter"
                         data-aos="fade-up"
                         data-aos-delay="300"
                         style={{
@@ -107,6 +107,18 @@ const AboutUs = () => {
                         }}
                     >
                         Your all-in-one solution for image and PDF transformation in an efficient and fastest way.
+                    </p>
+                    <p
+                        className="block md:hidden text-md leading-12 tracking-widest text-gray-300 max-w-6xl mx-auto typewriter"
+                        data-aos="fade-up"
+                        data-aos-delay="300"
+                        style={{
+                            fontFamily: "Satisfy, cursive",
+                            fontWeight: 400,
+                            fontStyle: "normal"
+                        }}
+                    >
+                        Your all-in-one solution for image and PDF.
                     </p>
                 </div>
 
