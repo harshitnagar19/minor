@@ -10,7 +10,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-[] bg-opacity-90 backdrop-blur-sm z-50 shadow-lg border-b border-gray-700/50">
+    <nav className="fixed top-0 left-0 right-0  bg-opacity-90 backdrop-blur-sm z-50 shadow-lg border-b border-gray-700/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
@@ -69,16 +69,19 @@ const NavBar = () => {
 
       {/* Mobile menu, show/hide based on menu state */}
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-          <Link to="/" className="">HeroSection</Link>
-          <NavLink to="/" className={({ isActive }) => `hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#12192b] shadow-lg">
+          <NavLink to="/" className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
               >HeroSection
           </NavLink>
-          <NavLink to="/about-us" className={({ isActive }) => `hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
+          <NavLink to="/about-us" className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
               >About Us
           </NavLink>
-          <Link to="#contact" className="text-gray-600 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Contact Us</Link>
-          <Link to="#pricing" className="text-gray-600 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Kuch dena hoto</Link>
+          <NavLink to="/contact-us" className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
+              >Contact Us
+          </NavLink>
+          <NavLink to="/other" className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
+              >Other
+          </NavLink>
           <div className="mt-4">
             <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200">
               Get Started
