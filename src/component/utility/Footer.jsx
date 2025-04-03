@@ -1,10 +1,11 @@
 import React from 'react';
+import { NavLink, Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Company Info Column */}
           <div>
             <h3 className="text-xl font-bold mb-4">ImaPDF</h3>
@@ -43,35 +44,22 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Products</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition">PDF Converter</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Image Editor</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">OCR Technology</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Document Scanner</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">AI Enhancement</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition">Format Convert</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition">Compress Image</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition">Merge PDF</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition">create PDF</a></li>
             </ul>
           </div>
 
-          {/* Resources Column */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Documentation</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Tutorials</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Community</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">API Reference</a></li>
-            </ul>
-          </div>
-
+         
           {/* Company Column */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Careers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Contact</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+              <li><Link to="/" className="text-gray-400 hover:text-white transition">Hero section</Link></li>
+              <li><Link to="about-us" className="text-gray-400 hover:text-white transition">About Us</Link></li>
+              <li><Link to="#" className="text-gray-400 hover:text-white transition">Contact Us</Link></li>
+              <li><Link to="#" className="text-gray-400 hover:text-white transition">Get Start</Link></li>
             </ul>
           </div>
         </div>

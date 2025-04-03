@@ -88,22 +88,22 @@ const Hero = () => {
     const bottomGridHelper2 = new THREE.GridHelper(
       size,
       divisions / 2,
-    //   new THREE.Color(0x8b5cf6), // Purple
-    //   new THREE.Color(0xc4b5fd)  // Light purple
+      // new THREE.Color(0x8b5cf6), // Purple
+      // new THREE.Color(0xc4b5fd)  // Light purple
     );
     // bottomGridHelper2.position.y = -5.1;
     
     // Make accent grid slightly transparent
     const bottomGridMaterial2 = bottomGridHelper2.material;
-    // if (Array.isArray(bottomGridMaterial2)) {
-    //   bottomGridMaterial2.forEach(material => {
-    //     material.opacity = 0.5;
-    //     material.transparent = true;
-    //   });
-    // } else {
-    //   bottomGridMaterial2.opacity = 0.5;
-    //   bottomGridMaterial2.transparent = true;
-    // }
+    if (Array.isArray(bottomGridMaterial2)) {
+      bottomGridMaterial2.forEach(material => {
+        material.opacity = 0.5;
+        material.transparent = true;
+      });
+    } else {
+      bottomGridMaterial2.opacity = 0.5;
+      bottomGridMaterial2.transparent = true;
+    }
     
     // scene.add(bottomGridHelper2);
     
