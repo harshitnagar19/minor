@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import NavBar from '../navBar/NavBar';
 import harshitNagar from "../../assets/teamphoto/harshitNagar.jpg";
 import hemant from "../../assets/teamphoto/hemant.png";
 import harshitGawli from "../../assets/teamphoto/harshitGawli.png";

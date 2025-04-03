@@ -58,7 +58,7 @@ const NavBar = () => {
               >
                 About US
               </NavLink>
-              <Link to="#contact" className="text-white hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact Us</Link>
+            <NavLink to="/contact-us" className={({isActive})=>`hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-[#4f39f6]" : "text-white"}`} > Contact Us</NavLink>
               <Link to="#pricing" className="text-white hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Kuch dena hoto</Link>
             </div>
           </div>

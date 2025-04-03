@@ -5,12 +5,14 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import AboutUs from './component/aboutUs/AboutUs.jsx'
 import Hero from './component/hero/Hero.jsx'
 import Layout from './component/Layout.jsx'
+import ContactUs from './component/contactUs/ContactUs.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='' element={<Layout />}>
       <Route path='/' element={<Hero/>} />
       <Route path='/about-us' element={<AboutUs />} />
+      <Route path='/contact-us' element={<ContactUs/>}/>
     </Route>
   )
 )
