@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route index element={<Layout><LandingPage></LandingPage></Layout>}></Route>
         <Route path='/about-us' element={<Layout><AboutUs/></Layout>}> </Route>
+        
       </Routes>
       </BrowserRouter>
     </div>
