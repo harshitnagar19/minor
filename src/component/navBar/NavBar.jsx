@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from "../../assets/Logo.png";
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+const NavBar = () => {
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [getStartShow, setGetstartShow] = useState(true)
+  let loc = useLocation();
+  useEffect(() => {
+    console.log(loc)
+    if (loc.pathname == '/dashboard') {
+      setGetstartShow(false);
+    
+    } else {
+      setGetstartShow(true);
+    }
+  },[loc])
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const location = useLocation();
-  const navigate = useNavigate();
   // Scrolling to top when logo is clicked
   const handleHeroClick = () => {
     if (location.pathname === '/') {
@@ -99,8 +110,10 @@ const NavBar = () => {
             </div>
           </div>
 
-          <div className="hidden md:block">
-            <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200">
+          <div className={`hidden md:block`}>
+            <button className={`${getStartShow ? "md:block hidden" : "hidden"} bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200`}
+              onClick={() => { navigate("/dashboard") }}
+            >
               Get Started
             </button>
           </div>

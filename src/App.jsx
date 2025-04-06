@@ -4,6 +4,7 @@ import LandingPage  from './component/landingPage/LandingPage'
 import AboutUs from './component/aboutUs/AboutUs'
 import NavBar from './component/navBar/NavBar'
 import { Layout } from './component/layout/Layout'
+import PDFImageOperations from './component/operations/PDFImageOperations'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route index element={<Layout><LandingPage></LandingPage></Layout>}></Route>
         <Route path='/about-us' element={<Layout><AboutUs/></Layout>}> </Route>
+        <Route path='/ ' element={<Layout><PDFImageOperations/></Layout>}> </Route>
         
       </Routes>
       </BrowserRouter>

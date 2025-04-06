@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
-
+import { useNavigate } from 'react-router-dom';
 const Hero = () => {
+  const navigate = useNavigate();
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
 
@@ -259,7 +260,9 @@ const Hero = () => {
               The all-in-one solution to process, edit, and convert your images and PDFs with advanced AI-powered tools.
             </p>
             <div className="hero-cta flex flex-wrap gap-4">
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+              onClick={()=>{navigate("/dashboard")}}
+              >
                 Try For Free
               </button>
               <button className="bg-[#d1d4d6] hover:bg-white text-indigo-400 font-semibold py-3 px-6 rounded-lg border border-indigo-800 shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 flex items-center">
