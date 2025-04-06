@@ -14,15 +14,16 @@ const NavBar = () => {
     console.log(loc)
     if (loc.pathname == '/dashboard') {
       setGetstartShow(false);
-    
+
     } else {
       setGetstartShow(true);
     }
-  },[loc])
+  }, [loc])
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const location = useLocation();
+
   // Scrolling to top when logo is clicked
   const handleHeroClick = () => {
     if (location.pathname === '/') {
@@ -38,6 +39,21 @@ const NavBar = () => {
     }
   };
 
+  //Handle click of about us page on mobile screens
+  const handleAboutClick = () => {
+    if (location.pathname === '/about-us') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      navigate('/about-us')
+    }
+  }
+  const handleContactClick = () => {
+    if (location.pathname === '/contact-us') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      navigate('/contact-us')
+    }
+  }
   const menuVariants = {
     hidden: {
       opacity: 0,
@@ -162,7 +178,10 @@ const NavBar = () => {
               <motion.div variants={itemVariants}>
                 <NavLink
                   to="/"
-                  onClick={toggleMenu}
+                  onClick={()=>{
+                    toggleMenu();
+                    handleHeroClick();
+                  }}
                   className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
                 >
                   HeroSection
@@ -171,7 +190,10 @@ const NavBar = () => {
               <motion.div variants={itemVariants}>
                 <NavLink
                   to="/about-us"
-                  onClick={toggleMenu}
+                  onClick={() => {
+                    toggleMenu();
+                    handleAboutClick();
+                  }}
                   className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
                 >
                   About Us
@@ -180,7 +202,10 @@ const NavBar = () => {
               <motion.div variants={itemVariants}>
                 <NavLink
                   to="/contact-us"
-                  onClick={toggleMenu}
+                  onClick={() => {
+                    toggleMenu();
+                    handleContactClick();
+                  }}
                   className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
                 >
                   Contact Us
