@@ -144,13 +144,13 @@ const AnimatedTabs = ({ activeTab, setActiveTab }) => {
     <div ref={tabsContainerRef} className="inline-flex bg-gray-800 bg-opacity-30 backdrop-blur-md p-1 rounded-xl relative">
       <div
         ref={indicatorRef}
-        className="absolute top-1 h-10 bg-indigo-600 rounded-lg transition-all duration-300 ease-out"
+        className="absolute  text-center top-1 h-10 bg-indigo-600 rounded-lg transition-all duration-300 ease-out"
         style={indicatorStyle}
       ></div>
       
       <button
         data-tab="pdf"
-        className={`px-6 py-2 rounded-lg font-medium z-10 relative transition-colors ${activeTab === 'pdf' ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+        className={`px-6 sm:py-2 rounded-lg font-medium  z-10 relative transition-colors ${activeTab === 'pdf' ? 'text-white' : 'text-gray-400 hover:text-white'}`}
         onClick={() => setActiveTab('pdf')}
       >
         PDF Operations

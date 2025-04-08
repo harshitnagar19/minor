@@ -221,7 +221,11 @@ const NavBar = () => {
                 </NavLink>
               </motion.div>
               <motion.div variants={itemVariants} className="mt-4">
-                <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200">
+                <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200" 
+                onClick={()=>{
+                  toggleMenu();
+                  navigate('/dashboard');
+                }}>
                   Get Started
                 </button>
               </motion.div>
