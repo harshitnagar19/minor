@@ -26,7 +26,13 @@ const NavBar = () => {
       }, 1000);
     }
   };
-
+const handleAboutClick=()=>{
+if(location.pathname==='/about-us'){
+  window.scrollTo({top: 0, behavior: 'smooth'})
+}else{
+  navigate('/about-us')
+}
+}
   const menuVariants = {
     hidden: {
       opacity: 0,
@@ -149,7 +155,7 @@ const NavBar = () => {
               <motion.div variants={itemVariants}>
                 <NavLink
                   to="/"
-                  onClick={toggleMenu}
+                  onClick={toggleMenu }
                   className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
                 >
                   HeroSection
@@ -158,7 +164,10 @@ const NavBar = () => {
               <motion.div variants={itemVariants}>
                 <NavLink
                   to="/about-us"
-                  onClick={toggleMenu}
+                  onClick={()=>{
+                    toggleMenu();
+                     handleAboutClick();
+                  }}
                   className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
                 >
                   About Us
