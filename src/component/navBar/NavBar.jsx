@@ -14,7 +14,6 @@ const NavBar = () => {
     console.log(loc)
     if (loc.pathname == '/dashboard') {
       setGetstartShow(false);
-    
     } else {
       setGetstartShow(true);
     }
