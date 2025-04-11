@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 import { imageOperations } from "../../data/imageoperation";
 import { pdfOperations } from "../../data/pdfoperation";
 import AdvancedBackground from './AdvancedBackground';
-
 // Advanced 3D particle system for background
 // Updated AdvancedBackground component to ensure continuous animation
 

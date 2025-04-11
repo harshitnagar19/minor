@@ -1,10 +1,12 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from "../../assets/Logo.png";
 import { useLocation, useNavigate } from 'react-router-dom';
 
+
 const NavBar = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [getStartShow, setGetstartShow] = useState(true)
   let loc = useLocation();
@@ -12,15 +14,16 @@ const NavBar = () => {
     console.log(loc)
     if (loc.pathname == '/dashboard') {
       setGetstartShow(false);
+
     } else {
       setGetstartShow(true);
     }
-  },[loc])
+  }, [loc])
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const location = useLocation();
-  const navigate = useNavigate();
+
   // Scrolling to top when logo is clicked
   const handleHeroClick = () => {
     if (location.pathname === '/') {
@@ -35,13 +38,22 @@ const NavBar = () => {
       }, 1000);
     }
   };
-const handleAboutClick=()=>{
-if(location.pathname==='/about-us'){
-  window.scrollTo({top: 0, behavior: 'smooth'})
-}else{
-  navigate('/about-us')
-}
-}
+
+  //Handle click of about us page on mobile screens
+  const handleAboutClick = () => {
+    if (location.pathname === '/about-us') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      navigate('/about-us')
+    }
+  }
+  const handleContactClick = () => {
+    if (location.pathname === '/contact-us') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      navigate('/contact-us')
+    }
+  }
   const menuVariants = {
     hidden: {
       opacity: 0,
@@ -114,8 +126,8 @@ if(location.pathname==='/about-us'){
             </div>
           </div>
 
-          <div className="hidden md:block">
-          <button className={`${getStartShow ? "md:block hidden" : "hidden"} bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200`}
+          <div className={`hidden md:block`}>
+            <button className={`${getStartShow ? "md:block hidden" : "hidden"} bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200`}
               onClick={() => { navigate("/dashboard") }}
             >
               Get Started
@@ -166,7 +178,10 @@ if(location.pathname==='/about-us'){
               <motion.div variants={itemVariants}>
                 <NavLink
                   to="/"
-                  onClick={toggleMenu }
+                  onClick={()=>{
+                    toggleMenu();
+                    handleHeroClick();
+                  }}
                   className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
                 >
                   HeroSection
@@ -175,9 +190,9 @@ if(location.pathname==='/about-us'){
               <motion.div variants={itemVariants}>
                 <NavLink
                   to="/about-us"
-                  onClick={()=>{
+                  onClick={() => {
                     toggleMenu();
-                     handleAboutClick();
+                    handleAboutClick();
                   }}
                   className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
                 >
@@ -187,7 +202,10 @@ if(location.pathname==='/about-us'){
               <motion.div variants={itemVariants}>
                 <NavLink
                   to="/contact-us"
-                  onClick={toggleMenu}
+                  onClick={() => {
+                    toggleMenu();
+                    handleContactClick();
+                  }}
                   className={({ isActive }) => `block px-3 py-2 rounded-md text-base font-medium ${isActive ? "text-[#4f39f6]" : "text-white"}`}
                 >
                   Contact Us
@@ -203,7 +221,11 @@ if(location.pathname==='/about-us'){
                 </NavLink>
               </motion.div>
               <motion.div variants={itemVariants} className="mt-4">
-                <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200">
+                <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200" 
+                onClick={()=>{
+                  toggleMenu();
+                  navigate('/dashboard');
+                }}>
                   Get Started
                 </button>
               </motion.div>

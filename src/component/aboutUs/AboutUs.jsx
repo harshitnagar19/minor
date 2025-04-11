@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import harshitNagar from "../../assets/teamphoto/harshitNagar.jpg";
-import hemant from "../../assets/teamphoto/hemant.png";
+import hemant from "../../assets/teamphoto/hemant.jpg";
 import harshitGawli from "../../assets/teamphoto/harshitGawli.png";
 import lucky from "../../assets/teamphoto/lucky.png";
 // Import AOS (Animate On Scroll) library
@@ -96,14 +96,10 @@ const AboutUs = () => {
                 <div className="text-center mb-16" data-aos="fade-down">
                     <h1 className="text-5xl font-bold mb-4">About <span className="text-indigo-400 animate-pulse">MergX</span></h1>
                     <p
-                        className="hidden md:block text-2xl leading-12 tracking-widest text-gray-300 max-w-6xl mx-auto typewriter"
+                        className="hidden md:block text-xl italic leading-12 tracking-widest text-gray-300 max-w-6xl mx-auto typewriter"
                         data-aos="fade-up"
                         data-aos-delay="300"
-                        style={{
-                            fontFamily: "Satisfy, cursive",
-                            fontWeight: 400,
-                            fontStyle: "normal"
-                        }}
+                       
                     >
                         Your all-in-one solution for image and PDF transformation in an efficient and fastest way.
                     </p>
@@ -172,13 +168,13 @@ const AboutUs = () => {
                                 data-aos="flip-up" 
                                 data-aos-delay={index * 100}
                             >
-                                <div className="relative overflow-hidden rounded-full mx-auto mb-4 group">
+                                <div className="relative overflow-hidden rounded-full mx-auto mb-4 group ">
                                     <img 
-                                        className="w-24 h-24 rounded-full mx-auto transition-transform duration-500 group-hover:scale-110" 
+                                        className="w-24 h-24 rounded-full mx-auto hover:scale-[1.7] transition-transform duration-500 " 
                                         src={member.photo} 
                                         alt={member.name}
                                     />
-                                    <div className="absolute inset-0 bg-indigo-600 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="absolute inset-0 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </div>
                                 <h3 className="text-xl font-semibold">{member.name}</h3>
                                 <p className="text-gray-400">{member.role}</p>

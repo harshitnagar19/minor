@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
+    <footer className="bg-gray-900 text-white pt-16 pb-8 bg-opacity-90 backdrop-blur-sm z-50 shadow-lg border-b border-gray-700/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Company Info Column */}
@@ -59,7 +59,8 @@ const Footer = () => {
               <li><Link to="/" className="text-gray-400 hover:text-white transition">Hero section</Link></li>
               <li><Link to="/about-us" className="text-gray-400 hover:text-white transition">About Us</Link></li>
               <li><Link to="/contact-us" className="text-gray-400 hover:text-white transition">Contact Us</Link></li>
-              <li><Link to="/dashboard" className="text-gray-400 hover:text-white transition">Get Start</Link></li>            </ul>
+              <li><Link to="/dashboard" className="text-gray-400 hover:text-white transition">Get Start</Link></li>
+            </ul>
           </div>
         </div>
 
