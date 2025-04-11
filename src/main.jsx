@@ -15,7 +15,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<><ScrollToTop /><Hero /></>} />
       <Route path='/about-us' element={<><ScrollToTop /><AboutUs /></>} />
       <Route path='/contact-us' element={<><ScrollToTop /><ContactUs /></>} />
-      x
+      
     </Route>
   )
 )
