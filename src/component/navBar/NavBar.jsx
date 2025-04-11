@@ -115,7 +115,9 @@ if(location.pathname==='/about-us'){
           </div>
 
           <div className="hidden md:block">
-            <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200">
+          <button className={`${getStartShow ? "md:block hidden" : "hidden"} bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200`}
+              onClick={() => { navigate("/dashboard") }}
+            >
               Get Started
             </button>
           </div>

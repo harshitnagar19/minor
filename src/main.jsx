@@ -7,6 +7,7 @@ import Hero from './component/hero/Hero.jsx'
 import Layout from './component/Layout.jsx'
 import ContactUs from './component/contactUs/ContactUs.jsx'
 import ScrollToTop from './component/ScrollToTop.js'
+import PDFImageOperations from './component/operations/PDFImageOperations.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,7 +16,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<><ScrollToTop /><Hero /></>} />
       <Route path='/about-us' element={<><ScrollToTop /><AboutUs /></>} />
       <Route path='/contact-us' element={<><ScrollToTop /><ContactUs /></>} />
-      
+      <Route path='/dashboard' element={<><ScrollToTop /><PDFImageOperations /></>} />
     </Route>
   )
 )
