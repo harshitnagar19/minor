@@ -8,6 +8,7 @@ import Layout from './component/Layout.jsx'
 import ContactUs from './component/contactUs/ContactUs.jsx'
 import ScrollToTop from './component/ScrollToTop.js'
 import PDFImageOperations from './component/operations/PDFImageOperations.jsx'
+import ImageCompressionUploader  from './component/uploders/ImageCompressionUploader.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
 
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path='/about-us' element={<><ScrollToTop /><AboutUs /></>} />
       <Route path='/contact-us' element={<><ScrollToTop /><ContactUs /></>} />
       <Route path='/dashboard' element={<><ScrollToTop /><PDFImageOperations /></>} />
+      <Route path='/dashboard/image-compression-uploader' element={<><ScrollToTop /><ImageCompressionUploader/></>} />
     </Route>
   )
 )

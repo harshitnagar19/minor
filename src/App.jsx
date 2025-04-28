@@ -14,8 +14,8 @@ function App() {
       <Routes>
         <Route index element={<Layout><LandingPage></LandingPage></Layout>}></Route>
         <Route path='/about-us' element={<Layout><AboutUs/></Layout>}> </Route>
-        <Route path='/ ' element={<Layout><PDFImageOperations/></Layout>}> </Route>
-        
+        <Route path='/' element={<Layout><PDFImageOperations/></Layout>}> </Route>
+        {/* <Route path='' */}
       </Routes>
       </BrowserRouter>
     </div>
