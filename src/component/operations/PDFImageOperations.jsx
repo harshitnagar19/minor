@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { imageOperations } from "../../data/imageoperation";
 import { pdfOperations } from "../../data/pdfoperation";
 import AdvancedBackground from './AdvancedBackground';
+import { useNavigate } from 'react-router-dom';
 // Advanced 3D particle system for background
 // Updated AdvancedBackground component to ensure continuous animation
 
@@ -173,6 +174,7 @@ const PDFImageOperations = () => {
   const containerRef = useRef(null);
   const headingRef = useRef(null);
   const descriptionRef = useRef(null);
+  const navigate=useNavigate();
   
   useEffect(() => {
     if (containerRef.current && headingRef.current && descriptionRef.current) {
@@ -261,7 +263,10 @@ const PDFImageOperations = () => {
                 icon={op.icon}
                 description={op.description}
                 color={op.color}
-                onClick={() => console.log(`${op.title} clicked`)}
+                onClick={()=>{
+                  // console.log(op.url)
+                  navigate(op.url)
+                }}
               />
             ))}
           </div>

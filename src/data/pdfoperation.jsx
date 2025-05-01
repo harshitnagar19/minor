@@ -19,6 +19,7 @@ export const pdfOperations = [
       ),
       description: "Convert PDF documents to editable Word files",
       color: "#4f46e5",
+      url:'',
     },
     {
       title: "PDF to PowerPoint",
@@ -40,6 +41,7 @@ export const pdfOperations = [
       ),
       description: "Convert PDF files to PowerPoint presentations",
       color: "#ea580c",
+      url:'',
     },
     {
       title: "PDF to Excel",
@@ -61,6 +63,7 @@ export const pdfOperations = [
       ),
       description: "Extract tables and data to Excel spreadsheets",
       color: "#16a34a",
+      url:'',
     },
     {
       title: "Split PDF",
@@ -82,6 +85,7 @@ export const pdfOperations = [
       ),
       description: "Split PDF documents into separate files",
       color: "#8b5cf6",
+      url:'',
     },
     {
       title: "Merge PDFs",
@@ -103,6 +107,7 @@ export const pdfOperations = [
       ),
       description: "Combine multiple PDFs into a single document",
       color: "#ec4899",
+      url:'',
     },
     {
       title: "Add Watermark",
@@ -124,5 +129,6 @@ export const pdfOperations = [
       ),
       description: "Add text or image watermarks to PDF files",
       color: "#0ea5e9",
+      url:'',
     },
   ];

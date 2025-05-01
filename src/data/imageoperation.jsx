@@ -19,6 +19,7 @@ export const imageOperations = [
     ),
     description: "Convert images to PDF documents",
     color: "#4f46e5",
+    url:'',
   },
   {
     title: "Compress Image",
@@ -40,6 +41,7 @@ export const imageOperations = [
     ),
     description: "Reduce image file size while preserving quality",
     color: "#16a34a",
+    url:'/dashboard/image-compression-uploader',
   },
   {
     title: "Enhance Image",
@@ -61,6 +63,7 @@ export const imageOperations = [
     ),
     description: "Improve image quality and appearance",
     color: "#8b5cf6",
+    url:'',
   },
   {
     title: "Convert Image Format",
@@ -82,6 +85,7 @@ export const imageOperations = [
     ),
     description: "Change image format (JPG, PNG, WebP, etc.)",
     color: "#ea580c",
+    url:'',
   },
   {
     title: "Image Watermark",
@@ -103,6 +107,7 @@ export const imageOperations = [
     ),
     description: "Add text or image watermarks to your images",
     color: "#0ea5e9",
+    url:'',
   },
   {
     title: "Resize & Crop",
@@ -124,5 +129,6 @@ export const imageOperations = [
     ),
     description: "Change image dimensions or crop unwanted areas",
     color: "#ec4899",
+    url:'',
   },
 ];
