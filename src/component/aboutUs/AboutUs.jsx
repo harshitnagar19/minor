@@ -89,7 +89,7 @@ const AboutUs = () => {
             />
 
             {/* Navigation Bar */}
-            
+
             {/* Content Container with higher z-index */}
             <div className="container mx-auto px-6 pb-12 pt-20 relative z-10">
                 {/* Hero Section with Typing Animation */}
@@ -99,7 +99,7 @@ const AboutUs = () => {
                         className="hidden md:block text-xl italic leading-12 tracking-widest text-gray-300 max-w-4xl mx-auto typewriter"
                         data-aos="fade-up"
                         data-aos-delay="300"
-                       
+
                     >
                         Your all-in-one solution for image and PDF transformation in fastest way.
                     </p>
@@ -107,7 +107,7 @@ const AboutUs = () => {
                         className="block md:hidden text-md italic leading-12 tracking-widest text-gray-300 max-w-4xl  mx-auto typewriter"
                         data-aos="fade-up"
                         data-aos-delay="300"
-                        
+
                     >
                         Your all-in-one solution for image & PDF.
                     </p>
@@ -122,11 +122,11 @@ const AboutUs = () => {
                         </h2>
                         <p className="text-gray-300 mb-4">
                             Our mission is to democratize access to high-quality image processing and PDF management tools
-                            through a comprehensive, free-to-use web application. We aim to eliminate the fragmentation and 
-                            cost barriers in the current market by providing an all-in-one solution that empowers users to 
+                            through a comprehensive, free-to-use web application. We aim to eliminate the fragmentation and
+                            cost barriers in the current market by providing an all-in-one solution that empowers users to
                             efficiently manipulate images and documents without switching between multiple platforms.
-                            By developing an accessible platform with intuitive interfaces and optimized algorithms, 
-                            we serve students, professionals, photographers, designers, and organizations with essential 
+                            By developing an accessible platform with intuitive interfaces and optimized algorithms,
+                            we serve students, professionals, photographers, designers, and organizations with essential
                             utilities while maintaining quality and ensuring data security. Through our Image Processing &
                             PDF Utility Application, we strive to bridge the gap between scattered tools and create a unified
                             hub where users can seamlessly accomplish their document and image processing tasks in one place.
@@ -158,16 +158,16 @@ const AboutUs = () => {
                             { name: "Harshit Gawli", role: "Designer and Developer", photo: harshitGawli },
                             { name: "Lucky Verma", role: "Designer and Developer", photo: lucky }
                         ].map((member, index) => (
-                            <div 
-                                key={index} 
-                                className="bg-gray-800 rounded-lg p-6 text-center transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:-translate-y-2" 
-                                data-aos="flip-up" 
+                            <div
+                                key={index}
+                                className="bg-gray-800 rounded-lg p-6 text-center transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:-translate-y-2"
+                                data-aos="flip-up"
                                 data-aos-delay={index * 100}
                             >
                                 <div className="relative overflow-hidden rounded-full mx-auto mb-4 group ">
-                                    <img 
-                                        className="w-24 h-24 rounded-full mx-auto hover:scale-[1.7] transition-transform duration-500 " 
-                                        src={member.photo} 
+                                    <img
+                                        className="w-24 h-24 rounded-full mx-auto hover:scale-[1.7] transition-transform duration-500 "
+                                        src={member.photo}
                                         alt={member.name}
                                     />
                                     <div className="absolute inset-0 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -194,10 +194,10 @@ const AboutUs = () => {
                             { title: "Web-Based Accessibility", description: "As a cloud-deployed solution, users can access the platform from anywhere without installation requirements, making it convenient for on-the-go use across different devices and operating systems." },
                             { title: "Data Privacy and Security", description: "The platform prioritizes secure handling of documents and images, ensuring user data remains protected throughout all processing operations without storing sensitive information unnecessarily." }
                         ].map((feature, index) => (
-                            <div 
-                                key={index} 
-                                className="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30" 
-                                data-aos="zoom-in-up" 
+                            <div
+                                key={index}
+                                className="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30"
+                                data-aos="zoom-in-up"
                                 data-aos-delay={index * 100}
                             >
                                 <div className="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center mb-4 animate-pulse">
@@ -210,7 +210,7 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
-            
+
             {/* Animated Gradient Footer */}
             <div className="h-4 w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-gradient"></div>
         </div>
@@ -283,9 +283,9 @@ const styles = `
 
 // Create a style element and append the CSS
 if (typeof document !== 'undefined') {
-  const styleElement = document.createElement('style');
-  styleElement.textContent = styles;
-  document.head.appendChild(styleElement);
+    const styleElement = document.createElement('style');
+    styleElement.textContent = styles;
+    document.head.appendChild(styleElement);
 }
 
 export default AboutUs;
