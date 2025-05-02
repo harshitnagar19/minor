@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Upload } from 'lucide-react';
-
+import axios from 'axios'
 const ImageCompressionUploader = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -107,11 +107,11 @@ const ImageCompressionUploader = () => {
     try {
       // In a real implementation, this would be your axios call as in the original code
       // For demo purposes, we're simulating a delay and using the original image
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setCompressedImageUrl(previewUrl);
-      setUploadStatus('Image compressed successfully!');
+      // await new Promise(resolve => setTimeout(resolve, 1500));
+      // setCompressedImageUrl(previewUrl);
+      // setUploadStatus('Image compressed successfully!');
       
-      /* Original axios implementation would be:
+    
       const response = await axios.post('http://localhost:9999/image-operation/compress-image', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -131,8 +131,7 @@ const ImageCompressionUploader = () => {
       });
       const compressedUrl = URL.createObjectURL(blob);
       setCompressedImageUrl(compressedUrl);
-      */
-      
+          
     } catch (error) {
       console.error('Error uploading image:', error);
       setErrorMessage(`Upload failed: ${error.message || 'Unknown error'}`);
