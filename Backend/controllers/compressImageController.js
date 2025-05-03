@@ -5,12 +5,10 @@ const Joi = require('joi');
 
 const compressImageController = {}
 
-// JOI Validation Schema
 const imageSchema = Joi.object({
     compressionType: Joi.string().valid('low', 'medium', 'high').required(),
   });
   
-  // Compression quality map
   const qualityMap = {
     low: 30,
     medium: 50,
@@ -25,23 +23,21 @@ compressImageController.compress = async (req,res)=>{
             status:"ERR",
             msg:error.details[0].message,
             data: [] });
-        console.log("running")
     
         const compressionType = req.body.compressionType;
-        console.log(compressionType)
         const quality = qualityMap[compressionType];
-        console.log("req",req)
+
         const image = req.file;
-        if (!image) return res.status(400).json({ error: 'Image is required' });
+        if (!image) return res.send(
+          { status: 'ERR',
+            msg:"Image is required",
+            data:[]
+          });
     
-        // Compress image in memory
-        const compressedBuffer = await sharp(image.buffer)
-          .jpeg({ quality }) // You can switch to .png() or .webp() if needed
-          .toBuffer();
+        const compressedBuffer = await sharp(image.buffer).jpeg({ quality }).toBuffer();
     
-        // Send compressed image buffer back
         res.set('Content-Type', 'image/jpeg');
-    res.send(compressedBuffer); 
+        res.send(compressedBuffer); 
 
       } catch (err) {
         console.error(err.message);

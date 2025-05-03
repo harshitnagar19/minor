@@ -105,13 +105,7 @@ const ImageCompressionUploader = () => {
     formData.append('compressionType', compressionType);
 
     try {
-      // In a real implementation, this would be your axios call as in the original code
-      // For demo purposes, we're simulating a delay and using the original image
-      // await new Promise(resolve => setTimeout(resolve, 1500));
-      // setCompressedImageUrl(previewUrl);
-      // setUploadStatus('Image compressed successfully!');
-      
-    
+
       const response = await axios.post('http://localhost:9999/image-operation/compress-image', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -126,9 +120,7 @@ const ImageCompressionUploader = () => {
         }
       });
       
-      const blob = new Blob([response.data], { 
-        type: selectedFile.type
-      });
+      const blob = new Blob([response.data], { type: selectedFile.type });
       const compressedUrl = URL.createObjectURL(blob);
       setCompressedImageUrl(compressedUrl);
           
