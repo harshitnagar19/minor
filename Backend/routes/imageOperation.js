@@ -15,4 +15,8 @@ router.post("/compress-image",upload.single('image'),compressImageController.com
 const imageEnhancementController = require("../controllers/imageEnhancementController")
 router.post("/enhance-image",upload.single('image'),imageEnhancementController.enhancement)
 
+// format convert
+const imageFormatConvert = require("../controllers/imageFormatConvert")
+router.post("/format-change",upload.single('image'),imageFormatConvert.convert)
+
 module.exports = router;

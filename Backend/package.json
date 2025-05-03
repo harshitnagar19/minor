@@ -11,12 +11,17 @@
   "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
+    "child_process": "^1.0.2",
     "connect-timeout": "^1.9.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "heic-convert": "^2.1.0",
+    "imagemagick-convert": "^1.0.3",
     "joi": "^17.13.3",
     "multer": "^1.4.5-lts.2",
-    "sharp": "^0.34.1"
+    "sharp": "^0.34.1",
+    "sharp-heic": "^0.0.1-security",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
