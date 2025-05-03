@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Upload, Wand2 } from 'lucide-react';
+import axios from 'axios';
 
 const ImageEnhancementUI = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -8,13 +9,13 @@ const ImageEnhancementUI = () => {
     const [processingStatus, setProcessingStatus] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [isDragging, setIsDragging] = useState(false);
-
+    const apiUrl = import.meta.env.VITE_API_URL;
     // State for the enhanced image
     const [enhancedImageUrl, setEnhancedImageUrl] = useState(null);
     const [enhancedImageName, setEnhancedImageName] = useState('');
 
-    // Enhancement type
-    const [enhancementType, setEnhancementType] = useState('auto');
+    // Quality value (MB size target)
+    const [quality, setQuality] = useState(15);
 
     const fileInputRef = useRef(null);
 
@@ -98,13 +99,47 @@ const ImageEnhancementUI = () => {
         setProcessingStatus('Enhancing your image...');
 
         try {
-            // Simulate processing delay for demo purposes
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            // Create form data
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+            formData.append('quality', quality.toString());
 
-            // In a real implementation, you would send the image and enhancement type to your backend
-            // For demo, we'll just use the original image as the "enhanced" result
-            setEnhancedImageUrl(previewUrl);
-            setProcessingStatus('Image enhanced successfully!');
+            // Call the backend API
+            const response = await axios({
+                method: 'post',
+                url: `${apiUrl}/image-operation/enhance-image`,
+                data: formData,
+                responseType: 'arraybuffer', // Important for binary data
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            // Check if the response is an error message (JSON)
+            const contentType = response.headers['content-type'];
+            if (contentType && contentType.includes('application/json')) {
+                // If it's JSON, it's probably an error
+                const errorData = JSON.parse(new TextDecoder().decode(response.data));
+                if (errorData.status === 'ERR') {
+                    throw new Error(errorData.msg || 'Enhancement failed');
+                }
+            }
+
+            // Get original and enhanced size from headers
+            const originalSize = response.headers['x-original-size-mb'];
+            const enhancedSize = response.headers['x-final-size-mb'];
+            
+            if (originalSize && enhancedSize) {
+                setProcessingStatus(`Image enhanced successfully! Size: ${originalSize}MB → ${enhancedSize}MB`);
+            } else {
+                setProcessingStatus('Image enhanced successfully!');
+            }
+
+            // Convert the binary response to a blob URL
+            const blob = new Blob([response.data], { type: 'image/jpeg' });
+            const enhancedUrl = URL.createObjectURL(blob);
+            setEnhancedImageUrl(enhancedUrl);
+            
         } catch (error) {
             console.error('Error enhancing image:', error);
             setErrorMessage(`Enhancement failed: ${error.message || 'Unknown error'}`);
@@ -165,17 +200,21 @@ const ImageEnhancementUI = () => {
                 </div>
 
                 <div className="mb-4">
-                    <label className="block text-white mb-2">Select Enhancement Type:</label>
-                    <select
-                        className="w-full p-2 border border-gray-600 bg-gray-700 rounded-md text-white"
-                        value={enhancementType}
-                        onChange={(e) => setEnhancementType(e.target.value)}
-                    >
-                        <option value="auto">Auto Enhance</option>
-                        <option value="color">Color Correction</option>
-                        <option value="lighting">Lighting Improvement</option>
-                        <option value="hdr">HDR Effect</option>
-                    </select>
+                    <label className="block text-white mb-2">Target File Size (MB):</label>
+                    <input
+                        type="range"
+                        min="10"
+                        max="25"
+                        step="1"
+                        value={quality}
+                        onChange={(e) => setQuality(parseInt(e.target.value))}
+                        className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                    />
+                    <div className="flex justify-between text-sm text-gray-400 mt-1">
+                        <span>10 MB</span>
+                        <span>{quality} MB</span>
+                        <span>25 MB</span>
+                    </div>
                 </div>
 
                 {previewUrl && (

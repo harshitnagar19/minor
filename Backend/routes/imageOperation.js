@@ -7,7 +7,12 @@ const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+// compress
 const compressImageController = require("../controllers/compressImageController")
 router.post("/compress-image",upload.single('image'),compressImageController.compress);
+
+// enhance
+const imageEnhancementController = require("../controllers/imageEnhancementController")
+router.post("/enhance-image",upload.single('image'),imageEnhancementController.enhancement)
 
 module.exports = router;
