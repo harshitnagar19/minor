@@ -105,15 +105,15 @@ const ImageEnhancementUI = () => {
             formData.append('quality', quality.toString());
 
             // Call the backend API
-            const response = await axios({
-                method: 'post',
-                url: `${apiUrl}/image-operation/enhance-image`,
-                data: formData,
-                responseType: 'arraybuffer', // Important for binary data
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+            const response = await axios.post(
+                `${apiUrl}/image-operation/enhance-image`,formData,{
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                  responseType: 'arraybuffer', // for binary data like images, PDFs, etc.
+                  timeout: 300000
                 }
-            });
+              );
 
             // Check if the response is an error message (JSON)
             const contentType = response.headers['content-type'];
