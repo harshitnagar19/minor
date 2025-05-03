@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Upload } from 'lucide-react';
 import axios from 'axios'
 const ImageCompressionUploader = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [compressionType, setCompressionType] = useState('medium');
@@ -106,7 +107,7 @@ const ImageCompressionUploader = () => {
 
     try {
 
-      const response = await axios.post('http://localhost:9999/image-operation/compress-image', formData, {
+      const response = await axios.post(`${apiUrl}/image-operation/compress-image`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
