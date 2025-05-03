@@ -1,6 +1,7 @@
 const express = require("express")
 var bodyParser = require('body-parser')
 var cors = require("cors");
+import timeout from 'connect-timeout'; // npm install connect-timeout
 
 //-------------------------------------------------------
 const app = express()
