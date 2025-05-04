@@ -1,7 +1,9 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { Upload, FilePlus, File, X, Trash2, Plus, ChevronUp, ChevronDown, Move } from 'lucide-react';
+import { Upload, FilePlus, File, X, Trash2, Plus, ChevronUp, ChevronDown, Move, Settings } from 'lucide-react';
+import axios from 'axios';
 
 const ImageToPdfConverter = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [isConverting, setIsConverting] = useState(false);
     const [conversionStatus, setConversionStatus] = useState('');
@@ -11,6 +13,11 @@ const ImageToPdfConverter = () => {
     const [pdfUrl, setPdfUrl] = useState(null);
     const [isDragReordering, setIsDragReordering] = useState(false);
     const [draggedIndex, setDraggedIndex] = useState(null);
+    
+    // Add state for the new options that match your controller's Joi validation
+    const [advancedOptionsOpen, setAdvancedOptionsOpen] = useState(false);
+    const [pageSize, setPageSize] = useState('custom');
+    const [maintainAspectRatio, setMaintainAspectRatio] = useState(true);
 
     const fileInputRef = useRef(null);
     const addMoreFilesRef = useRef(null);
@@ -97,22 +104,83 @@ const ImageToPdfConverter = () => {
             setErrorMessage('Please add at least one image');
             return;
         }
-
+    
         setIsConverting(true);
         setErrorMessage('');
-        setConversionStatus('Converting images to PDF...');
-
+        setConversionStatus('Uploading and converting images to PDF...');
+    
         try {
-            // Simulate conversion delay for demo purposes
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // In a real implementation, you would send the images to your backend for PDF conversion
-            // For demo, we'll just simulate a successful conversion
-            setPdfUrl('/api/placeholder/400/600'); // This creates a placeholder image
-            setConversionStatus('Conversion completed successfully!');
+            const formData = new FormData();
+            
+            // Important: Changed to match controller's expected field name (from 'image' to 'images')
+            selectedFiles.forEach(file => {
+                formData.append('image', file.file);
+            });
+            
+            // Add advanced options to match controller's Joi validation
+            formData.append('pageSize', pageSize);
+            formData.append('maintainAspectRatio', maintainAspectRatio);
+            
+            // Include PDF name as filename in response header
+            const filename = pdfName.endsWith('.pdf') ? pdfName : `${pdfName}.pdf`;
+            
+            const response = await axios.post(
+                `${apiUrl}/image-operation/image-to-pdf`,  // Adjust this to match your actual endpoint
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                    responseType: 'blob', // Important to receive binary data (PDF)
+                }
+            );
+    
+            // Check if the response is a PDF or an error message
+            const contentType = response.headers['content-type'];
+            
+            if (contentType === 'application/pdf') {
+                // Success - create blob URL from PDF data
+                const blob = new Blob([response.data], { type: 'application/pdf' });
+                const pdfBlobUrl = URL.createObjectURL(blob);
+                setPdfUrl(pdfBlobUrl);
+                setConversionStatus('Conversion completed successfully!');
+            } else {
+                // Handle error response
+                // Convert blob to text to read the error message
+                const reader = new FileReader();
+                reader.onload = () => {
+                    try {
+                        const errorData = JSON.parse(reader.result);
+                        setErrorMessage(`Conversion failed: ${errorData.message || 'Unknown error'}`);
+                    } catch (e) {
+                        setErrorMessage('Conversion failed: Server returned an invalid response');
+                    }
+                };
+                reader.readAsText(response.data);
+            }
         } catch (error) {
             console.error('Error converting images:', error);
-            setErrorMessage(`Conversion failed: ${error.message || 'Unknown error'}`);
+            
+            // Better error handling to extract message from response when available
+            if (error.response) {
+                if (error.response.data instanceof Blob) {
+                    // Try to read error message from blob
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        try {
+                            const errorData = JSON.parse(reader.result);
+                            setErrorMessage(`Conversion failed: ${errorData.message || 'Unknown error'}`);
+                        } catch (e) {
+                            setErrorMessage(`Conversion failed: ${error.message || 'Server error'}`);
+                        }
+                    };
+                    reader.readAsText(error.response.data);
+                } else {
+                    setErrorMessage(`Conversion failed: ${error.response.data?.message || error.message || 'Server error'}`);
+                }
+            } else {
+                setErrorMessage(`Conversion failed: ${error.message || 'Unknown error'}`);
+            }
         } finally {
             setIsConverting(false);
         }
@@ -130,9 +198,12 @@ const ImageToPdfConverter = () => {
     const handleDownload = () => {
         if (!pdfUrl) return;
 
-        // In a real implementation, this would download the actual PDF
-        // For demo purposes, we'll simulate downloading by opening in a new tab
-        window.open(pdfUrl, '_blank');
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = pdfName.endsWith('.pdf') ? pdfName : `${pdfName}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     const moveFile = (fromIndex, toIndex) => {
@@ -174,6 +245,10 @@ const ImageToPdfConverter = () => {
         
         moveFile(draggedIndex, index);
         setDraggedIndex(index);
+    };
+
+    const toggleAdvancedOptions = () => {
+        setAdvancedOptionsOpen(!advancedOptionsOpen);
     };
 
     return (
@@ -228,6 +303,55 @@ const ImageToPdfConverter = () => {
                         className="w-full p-2 border border-gray-600 bg-gray-700 rounded-md text-white"
                         placeholder="Enter PDF filename"
                     />
+                </div>
+
+                {/* Advanced Options Section - matches your controller's validation */}
+                <div className="mb-4">
+                    <button
+                        onClick={toggleAdvancedOptions}
+                        className="flex items-center justify-between w-full p-2 border border-gray-600 rounded-md bg-gray-700 text-white hover:bg-gray-600"
+                    >
+                        <span className="flex items-center">
+                            <Settings className="w-5 h-5 mr-2" />
+                            Advanced Options
+                        </span>
+                        <span>{advancedOptionsOpen ? '▲' : '▼'}</span>
+                    </button>
+                    
+                    {advancedOptionsOpen && (
+                        <div className="p-3 mt-2 border border-gray-600 rounded-md bg-gray-700">
+                            
+                            {/* Page Size Selection */}
+                            <div className="mb-3">
+                                <label className="block text-sm mb-1">Page Size:</label>
+                                <select
+                                    value={pageSize}
+                                    onChange={(e) => setPageSize(e.target.value)}
+                                    className="w-full p-2 border border-gray-600 bg-gray-800 rounded-md text-white"
+                                >
+                                    <option value="custom">Custom (Match Image Size)</option>
+                                    <option value="A4">A4</option>
+                                    <option value="A3">A3</option>
+                                    <option value="letter">Letter</option>
+                                    <option value="legal">Legal</option>
+                                </select>
+                            </div>
+                            
+                            {/* Maintain Aspect Ratio */}
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="aspectRatio"
+                                    checked={maintainAspectRatio}
+                                    onChange={() => setMaintainAspectRatio(!maintainAspectRatio)}
+                                    className="mr-2 h-4 w-4"
+                                />
+                                <label htmlFor="aspectRatio" className="text-sm">
+                                    Maintain aspect ratio
+                                </label>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* Selected Images List with Add More button */}

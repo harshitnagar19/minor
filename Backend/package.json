@@ -19,6 +19,7 @@
     "imagemagick-convert": "^1.0.3",
     "joi": "^17.13.3",
     "multer": "^1.4.5-lts.2",
+    "pdfkit": "^0.17.1",
     "sharp": "^0.34.1",
     "sharp-heic": "^0.0.1-security",
     "uuid": "^11.1.0"

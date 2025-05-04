@@ -19,4 +19,7 @@ router.post("/enhance-image",upload.single('image'),imageEnhancementController.e
 const imageFormatConvert = require("../controllers/imageFormatConvert")
 router.post("/format-change",upload.single('image'),imageFormatConvert.convert)
 
+const imageToPdfConvertController = require("../controllers/imageToPdfConvertController")
+router.post("/image-to-pdf",upload.array('image',2000),imageToPdfConvertController.convert)
+
 module.exports = router;
