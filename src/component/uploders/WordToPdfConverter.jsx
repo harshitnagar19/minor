@@ -101,6 +101,7 @@ const WordToPdfConverter = () => {
           return prev + 10;
         });
       }, 500);
+      console.log("here")
 
       const response = await fetch(`${apiUrl}/pdf-operation/word-to-pdf`, {
         method: 'POST',
