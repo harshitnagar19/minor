@@ -9,6 +9,8 @@ import ContactUs from './component/contactUs/ContactUs.jsx'
 import ScrollToTop from './component/ScrollToTop.js'
 import PDFImageOperations from './component/operations/PDFImageOperations.jsx'
 import { ImageCompressionUploader,  ImageEnhancementUI, ImageFormatConverter, ImageToPdfConverter } from './component/uploders/uploader.js';
+import WordToPdfConverter from './component/uploders/WordToPdfConverter.jsx'
+import PdfToWordConverter from './component/uploders/PdfToWordConverter.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
 
@@ -21,6 +23,8 @@ const router = createBrowserRouter(
       <Route path='/dashboard/image-enhancement' element={<><ScrollToTop /><ImageEnhancementUI/></>} />
       <Route path='/dashboard/image-to-pdf-converter' element={<><ScrollToTop /><ImageToPdfConverter/></>} />
       <Route path='/dashboard/image-format-converter' element={<><ScrollToTop/><ImageFormatConverter/></>}/>
+      <Route path='/dashboard/word-to-pdf-convert' element={<><ScrollToTop/><WordToPdfConverter/></>}/>
+      <Route path='/dashboard/pdf-to-word-convert' element={<><ScrollToTop/><PdfToWordConverter/></>}/>
     </Route>
   )
 )
