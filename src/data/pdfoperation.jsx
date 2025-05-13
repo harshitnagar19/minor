@@ -107,7 +107,7 @@ export const pdfOperations = [
       ),
       description: "Split PDF documents into separate files",
       color: "#8b5cf6",
-      url:'',
+      url:'split-pdf',
     },
     {
       title: "Merge PDFs",

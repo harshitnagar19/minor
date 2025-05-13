@@ -23,8 +23,13 @@ const uploadPdf = multer({ storage: storage });
 
 
 const wordToPdfController = require("../controllers/wordToPdfController")
-const pdfToWordController = require("../controllers/pdfToWordController")
 router.post('/word-to-pdf',upload.single('document') , wordToPdfController.convert)
+
+const pdfToWordController = require("../controllers/pdfToWordController")
 router.post('/pdf-to-word',uploadPdf.single('document') , pdfToWordController.convert)
+
+const splitPdf = require("../controllers/splitPdf")
+router.post('/split-pdf',uploadPdf.single('document') , splitPdf.split)
+
 
 module.exports = router
