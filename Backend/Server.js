@@ -57,6 +57,11 @@ app.use((err, req, res, next) => {
 });
 
 
+// contact us
+const contactus = require("./routes/contactus")
+app.use("/contact-us",contactus);
+
+
 app.listen(9999, () => {
   console.log("server is running on port :", 9999)
 });
